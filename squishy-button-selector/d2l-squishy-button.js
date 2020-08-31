@@ -214,6 +214,7 @@ export class D2lSquishyButton extends LitElement {
 	detached() {
 		window.removeEventListener('resize', this._measureSize);
 		this.shadowRoot.removeEventListener('slotchange', this._handleDomChanges);
+		this.removeEventListener('slotchange', this._handleDomChanges);
 	}
 
 	_handleDomChanges() {

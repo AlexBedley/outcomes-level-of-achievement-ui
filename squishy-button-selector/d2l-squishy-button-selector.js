@@ -28,7 +28,6 @@ export class D2lSquishyButtonSelector extends ArrowKeysMixin(LitElement) {
 				type: String,
 				attribute: 'tooltip-position'
 			},
-			_buttons: { attribute: false }
 		};
 	}
 
@@ -95,7 +94,6 @@ export class D2lSquishyButtonSelector extends ArrowKeysMixin(LitElement) {
 		this.addEventListener('squishy-button-text-changed', this._setShortTextIfAppropriate);
 		this.addEventListener('squishy-button-focus-changed', this._setShortTextIfAppropriate);
 		this._getListOfAllButtons = this._getListOfAllButtons.bind(this);
-		this.shadowRoot.addEventListener('slotchange', this._getListOfAllButtons, true);
 		this.arrowKeysDirection = 'leftright';
 		this.arrowKeysNoWrap = true;
 		this._focused = false;
@@ -123,6 +121,7 @@ export class D2lSquishyButtonSelector extends ArrowKeysMixin(LitElement) {
 	}
 
 	_handleDomChanges() {
+		this._getListOfAllButtons();
 		this._setButtonProperties();
 		this._updateButtonSelectedAttribute();
 	}
